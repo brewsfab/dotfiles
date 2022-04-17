@@ -1,0 +1,16 @@
+{
+    "coc.preferences.willSaveHandlerTimeout": 20000,
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json",
+        "python",
+        "yaml"
+    ],
+    "python.analysis.typeCheckingMode": "strict",
+    "python.formatting.autopep8Path": "autopep8",
+    "python.formatting.provider": "autopep8",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.lintOnSave": true,
+    "pyright.organizeimports.provider": "isort"
+}

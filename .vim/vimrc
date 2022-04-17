@@ -1,0 +1,163 @@
+set nocompatible
+
+
+let g:vimspector_enable_mappings = 'HUMAN'
+
+filetype plugin indent on
+syntax on
+set scrolloff=8
+
+
+let mapleader=' '
+
+set hidden
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+set pyx=3
+"if has('python')
+"  set pyx=2
+"elseif has('python3')
+"  set pyx=3
+"endif
+
+
+nnoremap <leader>h :call DoAllRewrite()<CR>
+nnoremap <leader>rp :Term python %<CR>
+nnoremap <leader>rg :Term go run %<CR>
+
+"if has('gui_running')
+"	set  background=light
+"else
+"	set background=dark
+"endif
+
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
+
+" Manage tabs properly
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+
+set backspace=indent,eol,start
+
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_leader_key='<A-e>' "update the emmet leader key
+
+" https://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard#comment55881786_20961530
+vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
+
+" Replace visual selection with yanked
+vnoremap <leader>p "_dP
+
+" Toggle NERDTree
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" Exit from the insert mode easily
+im jj <ESC>
+
+" Automatic vsplit the current month memo file
+nmap <leader>m :exec "vsplit" strftime("%m-%Y").'.md'<CR>
+
+"Insert the date to the following line
+nmap <leader>dt :put=strftime('%m-%d-%Y')<CR>
+" Enable to line numbering and relative for easy jumps
+set number relativenumber
+
+" SEARCHING
+
+set ignorecase
+
+set smartcase
+
+set incsearch
+
+" Quickly edit my vimrc
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Always highlight search
+
+set hlsearch
+
+" Commands
+
+
+" Quick save
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>x :x<CR>
+nnoremap <leader>o Go<CR>
+nnoremap <leader>sh :sh<CR>
+
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults. (From Luke Smith rice https://github.com/LukeSmithxyz/voidrice)
+
+set splitbelow splitright
+
+" Shortcutting split navigation, saving a keypress:
+
+noremap <C-h> <C-w>h
+
+noremap <C-j> <C-w>j
+
+noremap <C-k> <C-w>k
+
+noremap <C-l> <C-w>l
+
+" Zoom the split
+
+nnoremap <leader>zs <C-w>\|<C-w>_
+
+nnoremap <leader>zo <C-w>=
+
+" Line togglers
+
+" TODO avoid moving up if first line
+
+nnoremap - ddp
+
+nnoremap _ ddkP
+
+vnoremap - dp
+
+vnoremap _ dkP
+
+" Uppercase needs remapping
+
+noremap <C-u> gUaw
+
+" Lowercase
+
+noremap <C-y> guaw
+
+" MISC: add end of line comma
+" for Javascript and objects
+
+nnoremap <leader>, A,
+
+
+" YAML CONFIGURATION
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+let g:indentLine_char = '⦙'
+
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_text_changed = 'never'
+
+
+
+
+" Automatically source $MYVIMRC
+
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+
+" Automatically deletes all trailing whitespace on save.
+
+autocmd BufWritePre * %s/\s\+$//e
+
