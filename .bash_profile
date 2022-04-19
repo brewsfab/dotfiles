@@ -12,6 +12,7 @@ alias asl='awsprofileselection && aws sso login'
 
 alias awscred='pbpaste > ~/.aws/credentials'
 alias dockawslogin='aws ecr get-login-password --region ap-northeast-1 --profile $AWS_PROFILE | docker login -u AWS --password-stdin  $(echo $ECR_REPO) '
+alias python='python3'
 alias python3='python3.8'
 alias venv='python3 -m venv'
 
@@ -92,3 +93,4 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
+alias config='/usr/bin/git --git-dir=/home/will/.dotfiles/ --work-tree=/home/will'
