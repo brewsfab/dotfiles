@@ -92,7 +92,6 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>x :x<CR>
 nnoremap <leader>o Go<CR>
-nnoremap <leader>sh :sh<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults. (From Luke Smith rice https://github.com/LukeSmithxyz/voidrice)
 

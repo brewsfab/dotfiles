@@ -189,10 +189,14 @@ bar {
 #
 #My own configuration
 #Multi monitor - External on the left
-exec_always xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off
+exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off
 
 #Move workspace to monitor
 bindsym $mod+m move workspace to output left
+
+#Reload my screen configuration after plug/unplug (External on left)
+bindsym $mod+Shift+s exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off && xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off
+
 
 # Specific app workspace
 assign [class="kitty"] $ws1
@@ -206,7 +210,8 @@ assign [class="Org.gnome.Nautilus"] $ws5
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 #Set the keyboard to JP at startup
-exec_always setxkbmap --no-startup-id -model pc105 -rules evdev -layout jp
+exec_always setxkbmap -model pc105 -rules evdev -layout jp
+#exec_always setxkbmap --no-startup-id -model pc105 -rules evdev -layout jp
 
 # Wallpapers
 exec_always --no-startup-id feh --bg-scale ~/Pictures/walls/sora-sagano-8sOZJ8JF0S8-unsplash.jpg
