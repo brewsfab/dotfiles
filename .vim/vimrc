@@ -160,3 +160,6 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 autocmd BufWritePre * %s/\s\+$//e
 
+" Automatically reload the i3 on save
+autocmd bufwritepost ~/.config/i3/config :silent !i3-msg restart; notify-send "Reloaded i3 :)"
+
