@@ -180,13 +180,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Restart pulseaudio at startup
+exec --no-startup-id systemctl --user restart pulseaudio
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         #status_command i3status
         position top
         status_command ~/.local/bin/bumblebee-status \
-            -m cpu memory battery nic pasink pasource datetime layout\
+            -m xrandr cpu memory battery nic pasink pasource datetime layout\
             -t iceberg
             #-t solarized-dark-awesome
 }
@@ -198,6 +201,9 @@ exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate norm
 
 #Move workspace to monitor
 bindsym $mod+m move workspace to output left
+
+#PrtSc for flameshot
+bindsym Print exec flameshot gui
 
 #Reload my screen configuration after plug/unplug (External on left)
 bindsym $mod+Shift+s exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off && xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off
@@ -219,7 +225,7 @@ exec_always setxkbmap -model pc105 -rules evdev -layout jp
 #exec_always setxkbmap --no-startup-id -model pc105 -rules evdev -layout jp
 
 # Wallpapers
-exec_always --no-startup-id feh --bg-scale ~/Pictures/walls/sora-sagano-8sOZJ8JF0S8-unsplash.jpg
+exec_always --no-startup-id feh --bg-scale --randomize ~/Pictures/walls/
 
 # Set compton for transparency
 exec --no-startup-id compton
