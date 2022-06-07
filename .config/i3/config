@@ -203,7 +203,7 @@ exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate norm
 bindsym $mod+m move workspace to output left
 
 #PrtSc for flameshot
-bindsym Print exec flameshot gui
+bindsym Print exec flameshot
 
 #Reload my screen configuration after plug/unplug (External on left)
 bindsym $mod+Shift+s exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off && xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off
@@ -212,11 +212,19 @@ bindsym $mod+Shift+s exec xrandr --output eDP-1 --primary --mode 1920x1080 --pos
 # Specific app workspace
 assign [class="kitty"] $ws1
 assign [class="Google-chrome"] $ws2
+bindsym $mod+Shift+g exec google-chrome --password-store=gnome
 assign [class="Slack"] $ws3
-assign [class="zoom"] $ws3
 assign [class="CPod"] $ws4
 assign [class="Org.gnome.Nautilus"] $ws5
 
+#for_window [title="^Zoom.*"] move container to workspace $ws3
+#Zoom is tricky because during the screen sharing the windows doesn't have a name at the beginning
+# but the class as WM_CLASS(STRING) = "join?action=join&confno=xxxxxxxx"
+# So I use confno as the keyword
+for_window [class=".*confno.*"] move container to workspace $ws3
+for_window [class=".*confno.*" title="Chat"] floating enable
+
+for_window [title="(?i)Oracle VM VirtualBox.*"] move container to workspace $ws8
 #Start the keyring
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 

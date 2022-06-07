@@ -20,7 +20,11 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'romainl/flattened'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 source ~/.vim/coc-init.vim
