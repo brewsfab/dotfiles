@@ -29,6 +29,7 @@ alias gs="git status"
 #export NVIMRC=/home/will/.config/nvim/init.vim
 alias vi="nvim"
 alias vim="nvim"
+alias vimdiff="vim -d"
 
 #aws credential updater (from the clipboard)
 awscredupdater(){
